@@ -467,6 +467,7 @@ void simulation_tick(int delta) {
     score = remaining / 1000 + (BLOBS_TO_WIN - remaining_blobs);
     font_write(5, 20, 20, "%d:%02d bleiben dir um %d durchzuschleusen!", min, sec, remaining_blobs);
     font_write(win_w - 150, 20, 20, "Score: %.1f", score);
+    font_write(5, win_h - 5, 20, "<click> verschieben, <right-click> drehen, <space> neuer magnet");
 }
 
 void game_tick(int delta) {
