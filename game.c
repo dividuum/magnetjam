@@ -169,8 +169,9 @@ void game_init() {
     gfx_gate3 = image_load("gate3.tga");
     gfx_magnet = image_load("magnet.tga");
 
-    alSourcei (snd_music, AL_LOOPING,  AL_TRUE);
-    // alSourcePlay(snd_music);
+    alSourcei(snd_music, AL_LOOPING, AL_TRUE);
+    alSourcef(snd_music, AL_GAIN, 0.7);
+    alSourcePlay(snd_music);
 
     srandom(time(NULL));
 
