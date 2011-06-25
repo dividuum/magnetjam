@@ -16,7 +16,7 @@
 #define NUM_MAGNETS 10
 #define NUM_BLOBS 500
 #define NUM_GOALS 3
-#define BLOBS_TO_WIN 1
+#define BLOBS_TO_WIN 100
 #define SECONDS 180
 
 static int win_w, win_h;
