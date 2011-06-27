@@ -255,28 +255,12 @@ int remaining_to_spawn = 0;
 int next_spawn = 0;
 
 void endgame_tick(int delta) {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glViewport(0, 0, win_w, win_h);
-    glOrtho(0, win_w,
-            win_h, 0,
-            -1, 1);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    glfwPollEvents();
-
     if (status == WIN) {
         font_write(win_w/2 - 420, win_h / 2, 100, "Du Gewinnertyp!");
         font_write(win_w/2 - 130, win_h / 2 + 100, 50, "Score %.1f", score);
     } else {
         font_write(win_w/2 - 220, win_h / 2 + 100, 200, "Fail");
     }
-
-    glfwSwapBuffers();
-
-    if (!glfwGetWindowParam(GLFW_OPENED))
-        running = 0;
 }
 
 void simulation_tick(int delta) {
@@ -299,8 +283,8 @@ void simulation_tick(int delta) {
     // Magnetwimpel!
     glPointSize(1);
     glLineWidth(1);
-    for (int x = 0; x < win_w; x+=20) {
-        for (int y = 0; y < win_h; y+=20) {
+    for (double x = 0; x < win_w; x+=20) {
+        for (double y = 0; y < win_h; y+=20) {
             double f_x = 0, f_y = 0;
 
             for (int m = 0; m < NUM_MAGNETS; m++) {
@@ -309,14 +293,13 @@ void simulation_tick(int delta) {
                     continue;
                 calc_magnet(magnet, x, y, &f_x, &f_y);
             }
-
             glColor4f(1, 0, 0, 0.3);
-            glBegin(GL_POINT);
+            glBegin(GL_POINTS);
                 glVertex2f(x, y);
             glEnd();
 
             glColor4f(1, 1, 1, 0.1);
-            glBegin(GL_LINE);
+            glBegin(GL_LINES);
                 glVertex2f(x, y);
                 glVertex2f(x + f_x*50, y + f_y*50);
             glEnd();
@@ -430,8 +413,6 @@ void simulation_tick(int delta) {
         glLineWidth(magnet->length);
         if (!magnet->active)
             continue;
-        double center_x = magnet->x;
-        double center_y = magnet->y;
         double alpha = m == current_magnet ? 0.9 : 0.5;
 
         glColor4f(1, 1, 1, alpha);

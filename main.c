@@ -5,6 +5,7 @@
 
 #include "audio.h"
 #include "video.h"
+#include "game.h"
 
 #define MIN_DELTA 30
 #define MAX_DELTA 200

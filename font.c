@@ -1,14 +1,12 @@
 #include <GL/glfw.h>
-#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 #include "video.h"
 #include "misc.h"
 #include "font_stroke.h"
-
-static GLuint base;
-static GLuint font_tex_id;
 
 void font_write(GLdouble x, GLdouble y, GLdouble scale, const char *fmt, ...) {
     va_list ap;
@@ -23,7 +21,6 @@ void font_write(GLdouble x, GLdouble y, GLdouble scale, const char *fmt, ...) {
     glPushMatrix();
         glTranslatef(x, y, 0);
         glScalef(scale, scale, 1);
-        int pos = 0;
         for (const char *c = buf; *c; c++) {
             if (*c >= font->Quantity) 
                 continue;

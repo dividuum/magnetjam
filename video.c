@@ -28,6 +28,7 @@ GLuint image_load(const char *filename) {
     if (glfwLoadTexture2D(filename, GLFW_ORIGIN_UL_BIT|GLFW_BUILD_MIPMAPS_BIT))
         return tex_id;
     die("cannot load");
+    return 0; // never reached
 }
 
 void video_shutdown() {

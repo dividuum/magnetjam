@@ -6,11 +6,8 @@
 
 #include "misc.h"
 
-static ALCcontext *context;
-static ALCdevice *device;
-
 void audio_init(int argc, char *argv[]) {
-    alutInit(&argc, &argv);
+    alutInit(&argc, argv);
 }
 
 ALuint audio_load(const char *filename) {

@@ -16,8 +16,7 @@ TARGET  = magnet
 all: $(TARGET)
 
 ifdef DEBUG
-CFLAGS += -Wextra -Wredundant-decls -Wpointer-arith
-CCOPT  += -ggdb -Wall
+CFLAGS += -Wextra -Wredundant-decls -Wpointer-arith -ggdb -Wall -pedantic
 Q       =
 E       = @:
 else
