@@ -317,17 +317,15 @@ void simulation_tick(int delta) {
         blob->momentum_y *= 1.0;
 
         if (blob->next_goal < NUM_GOALS) {
-            for (int r = 0; r < 10; r++) {
-                double f_x = 0, f_y = 0;
-                for (int m = 0; m < NUM_MAGNETS; m++) {
-                    magnet_t *magnet = magnets+m;
-                    if (!magnet->active) 
-                        continue;
-                    calc_magnet(magnet, blob->x, blob->y, &f_x, &f_y);
-                }
-                blob->momentum_x += f_x/10;
-                blob->momentum_y += f_y/10;
+            double f_x = 0, f_y = 0;
+            for (int m = 0; m < NUM_MAGNETS; m++) {
+                magnet_t *magnet = magnets+m;
+                if (!magnet->active) 
+                    continue;
+                calc_magnet(magnet, blob->x, blob->y, &f_x, &f_y);
             }
+            blob->momentum_x += f_x;
+            blob->momentum_y += f_y;
         }
         blob->x += blob->momentum_x;
         blob->y += blob->momentum_y;
